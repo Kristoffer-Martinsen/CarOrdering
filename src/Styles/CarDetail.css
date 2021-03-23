@@ -1,0 +1,28 @@
+ul {
+  list-style: none;
+}
+
+li {
+  margin: 1em 2em;
+  font-weight: bold;
+}
+
+.link-to-order {
+  background-color: rgb(57, 116, 226);
+  color: aliceblue;
+  padding: 1em 3em;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a.link-to-order {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+a:hover.link-to-order {
+  color: aliceblue;
+  text-decoration: none;
+}
