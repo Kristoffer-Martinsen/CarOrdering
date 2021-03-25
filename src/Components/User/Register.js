@@ -9,15 +9,26 @@ import { Link } from 'react-router-dom';
 export const Register = (props) => {
 
   const api = axios.create( {
-    baseURL: "https://localhost:5001/api/users"
+    baseURL: "https://localhost:5001/api/authmanagement"
   });
+
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   
   const createUser = async (e) => {
     e.preventDefault();
-    let res = await api.post('/', { "email": userEmail, "password": userPassword });
-    props.history.push('/login/');
+
+    if(userEmail==="" || userPassword==="") {
+      return alert("Username/password can not be empty");
+    }
+
+    let res = await api.post('/register', { "username": userEmail, "email": userEmail, "password": userPassword });
+    if(res.data.success === true)
+    {
+      props.history.push('/login/');
+    } else {
+      alert(res.data.errors);
+    }
   }
 
   return (
