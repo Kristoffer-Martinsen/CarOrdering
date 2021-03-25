@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import '../../Styles/ListOfCars.css';
 import { Car } from '../Car/Car';
 import { Link } from 'react-router-dom';
-import CarMockData from '../../MockData/CarMockData';
 
 
 export const ListOfCars = () => {
@@ -10,15 +9,15 @@ export const ListOfCars = () => {
     fetchCarList();
   }, []); 
 
-
   const [cars, setCars] = useState([]);
 
-  
-  // Needs to be Async when making API calls later
-  const fetchCarList = () => {
-    setCars(CarMockData);
+  const fetchCarList = async () => {
+    const data = await fetch(
+      "https://localhost:5001/api/cars"
+    );
+    const cars = await data.json();
+    setCars(cars);
   };
-
 
   return (
     <div className="ListOfCars mt-5 mx-auto">
@@ -26,7 +25,7 @@ export const ListOfCars = () => {
         <div key = {car.id} className="car m-5">
           <Link to={`/car/${car.id}`}>
             <Car
-              src = {process.env.PUBLIC_URL + car.src}
+              src = {process.env.PUBLIC_URL + car.imagePath}
               year = {car.year}
               model = {car.model}
               price = {car.price}

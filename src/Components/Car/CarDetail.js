@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import CarMockData from '../../MockData/CarMockData';
 import { Row, Col, Image } from 'react-bootstrap';
 
 export const CarDetail = ({ match }) => {
 
   useEffect( () => {
     fetchCarById();
-  });
+  }, []);
   
   const [car, setCar] = useState({});
 
-  // Make fetch request for Car with this ID
-  const fetchCarById = () => {
-    setCar(CarMockData[match.params.id]);
+  const fetchCarById = async () => {
+    const data = await fetch(
+      `https://localhost:5001/api/cars/${match.params.id}`
+    )
+    const car = await data.json();
+    setCar(car);
   };
 
   return (
     <div>
       <Row>
           <Col>
-            <Image src={process.env.PUBLIC_URL + car.src} rounded />
+            <Image src={process.env.PUBLIC_URL + car.imagePath} rounded />
           </Col>
           <Col>
             <ul>

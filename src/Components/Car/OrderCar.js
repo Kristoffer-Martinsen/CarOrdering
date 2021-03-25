@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../../Styles/OrderCar.css'; 
 import DatePicker from 'react-datetime-picker';
 import { CarDetail } from './CarDetail';
