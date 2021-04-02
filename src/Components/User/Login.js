@@ -13,15 +13,26 @@ export const Login = ( props ) => {
 
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  
 
-  const login = async (e) => {
+
+
+  const handleLogin = async (e) => {
     e.preventDefault();
+    
+    setIsLoading(true);
+
+
+    /*
     let res = await api.post("/login", { "email": userEmail, "password": userPassword });
     if(res.data.success === true) {
+      console.log(res);
       props.history.push('/');
     } else {
       alert(res.data.errors);
     }
+    */
   }
 
   return (
@@ -52,7 +63,7 @@ export const Login = ( props ) => {
                 onChange={ (e) => setUserPassword(e.target.value) }
                 />
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={ login }>
+            <Button variant="primary" type="submit" onClick={ handleLogin }>
               Login
             </Button>
           </Form>
