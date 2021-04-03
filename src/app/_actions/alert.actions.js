@@ -1,4 +1,4 @@
-import { alertConstants } from '../Constants';
+import { alertConstants } from '../Constants/alert.constants';
 
 export const alertActions = {
   success,

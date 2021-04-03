@@ -1,4 +1,4 @@
-import userConstants from '../Constants';
+import { userConstants } from '../Constants/user.constants';
 
 
 export function users(state={}, action) {

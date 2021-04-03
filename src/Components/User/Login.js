@@ -3,25 +3,23 @@ import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Col, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from '../../app/_actions/user.actions';
 
 export const Login = ( props ) => {
-
-  const api = axios.create({
-    baseURL: "https://localhost:5001/api/authmanagement"
-  });
 
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  
-
-
+  const loggingIn = useSelector(state => state.authentication.loggingIn);
+  const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     
-    setIsLoading(true);
+    dispatch(userActions.login(userEmail, userPassword));
 
 
     /*
